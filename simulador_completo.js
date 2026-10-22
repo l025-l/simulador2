@@ -14,7 +14,8 @@
 
 function ocultarSecciones() {
   document.getElementById("parametros").classList.remove("activa");
-  document.getElementById("clientes").classList.remove("activa");       
+  document.getElementById("clientes").classList.remove("activa");
+  document.getElementById("credito").classList.remove("activa");       
 } 
 
 function mostrarSeccion(id) {
@@ -105,4 +106,24 @@ function limpiar() {
   mostrarTextoEnCaja("txtApellido", "");
   mostrarTextoEnCaja("txtIngresos", "");
   mostrarTextoEnCaja("txtEgresos", "");
+}
+
+function buscarClienteCredito() {
+  let buscarCedula = recuperaraTexto("buscarCedulaCredito");
+  let cliente = buscarCliente(buscarCedula);
+  let divDato = document.getElementById("datosClienteCredito");
+  if (cliente != null) {
+    clienteSeleccionado = cliente;
+    divDato.innerHTML =
+      "<h3>Datos del Cliente</h3>" +
+      "<p><strong>Cédula: </strong>" + cliente.cedula + "</p>" +
+      "<p><strong>Nombre: </strong>" + cliente.nombre + "</p>" +
+      "<p><strong>Apellido: </strong>" + cliente.apellido + "</p>" +
+      "<p><strong>Ingresos: </strong>" + cliente.ingresos + "</p>" +
+      "<p><strong>Egresos: </strong>" + cliente.egresos + "</p>";
+  }else {
+    clienteSeleccionado = null;
+    divDato.innerHTML = "<p>Cliente no encontrado.</p>";
+  }
+
 }
