@@ -39,16 +39,23 @@ function guardarCliente() {
   let ingresos = recuperarFloat("txtIngresos");
   let egresos = recuperarFloat("txtEgresos");
 
-  let nuevoCliente = {
-    cedula: cedula,
-    nombre: nombre,
-    apellido: apellido,
-    ingresos: ingresos,
-    egresos: egresos
-  }
-
-  clientes.push(nuevoCliente);
+  if (clienteSeleccionado == null) {
+        let nuevoCliente = {
+            cedula: cedula,
+            nombre: nombre,
+            apellido: apellido,
+            ingresos: ingresos,
+            egresos: egresos
+        };
+        clientes.push(nuevoCliente);
+    }else {
+        clienteSeleccionado.nombre = nombre;
+        clienteSeleccionado.apellido = apellido;
+        clienteSeleccionado.ingresos = ingresos;
+        clienteSeleccionado.egresos = egresos;
+    }
   pintarClientes();
+  limpiar();
 }
 
 function pintarClientes() {
@@ -67,4 +74,35 @@ function pintarClientes() {
     contenido += "</tr>";
   }
   tabla.innerHTML = contenido;
+}
+
+function buscarCliente(cedula) {
+  let clienteEncontrado = null;
+    for (let i = 0; i < clientes.length; i++) {
+        if (clientes[i].cedula === cedula) {
+            clienteEncontrado = clientes[i];
+            break;
+        }
+    }
+    return clienteEncontrado;
+}
+
+function seleccionarCliente(cedula) {
+  let cliente = buscarCliente(cedula);
+  if (cliente != null) {
+    clienteSeleccionado = cliente;
+    mostrarTextoEnCaja("txtCedula", cliente.cedula);
+    mostrarTextoEnCaja("txtNombre", cliente.nombre);
+    mostrarTextoEnCaja("txtApellido", cliente.apellido);
+    mostrarTextoEnCaja("txtIngresos", cliente.ingresos);
+    mostrarTextoEnCaja("txtEgresos", cliente.egresos);
+  }
+}
+
+function limpiar() {
+  mostrarTextoEnCaja("txtCedula", "");
+  mostrarTextoEnCaja("txtNombre", "");
+  mostrarTextoEnCaja("txtApellido", "");
+  mostrarTextoEnCaja("txtIngresos", "");
+  mostrarTextoEnCaja("txtEgresos", "");
 }
