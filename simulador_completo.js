@@ -196,3 +196,22 @@ function buscarCredito(cedula) {
   }
   return creditosEncontrados;
 }
+
+function pintarCreditos(credito) {
+  let contenido = "";
+  let tabla = document.getElementById("tablaCreditos");
+  for (let i = 0; i < credito.length; i++) {
+    let cred = cedula[i];
+    contenido += "<tr>";
+    contenido += "<td>" + cred.cedula + "</td>";
+    contenido += "<td>" + cred.nombre + "</td>";
+    contenido += "<td>" + cred.apellido + "</td>";
+    contenido += "<td>" + cred.monto + "</td>";
+    contenido += "<td>" + cred.tasa + "</td>";
+    contenido += "<td>" + cred.plazo + "</td>";
+    contenido += "<td>" + cred.cuota + "</td>";
+    contenido += "</tr>";
+    }
+  tabla.innerHTML = contenido;
+}
+
