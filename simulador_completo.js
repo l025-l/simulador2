@@ -107,6 +107,7 @@ function limpiar() {
   mostrarTextoEnCaja("txtApellido", "");
   mostrarTextoEnCaja("txtIngresos", "");
   mostrarTextoEnCaja("txtEgresos", "");
+  clienteSeleccionado = null;
 }
 
 function buscarClienteCredito() {
@@ -201,7 +202,7 @@ function pintarCreditos(credito) {
   let contenido = "";
   let tabla = document.getElementById("tablaCreditos");
   for (let i = 0; i < credito.length; i++) {
-    let cred = cedula[i];
+    let cred = credito[i];
     contenido += "<tr>";
     contenido += "<td>" + cred.cedula + "</td>";
     contenido += "<td>" + cred.nombre + "</td>";
@@ -215,3 +216,8 @@ function pintarCreditos(credito) {
   tabla.innerHTML = contenido;
 }
 
+function buscarCreditosCliente() {
+  let cedulaBuscada = recuperaraTexto("buscarCedulaListado"); 
+  let historialCliente = buscarCredito(cedulaBuscada);
+  pintarCreditos(historialCliente);
+}
