@@ -15,7 +15,8 @@
 function ocultarSecciones() {
   document.getElementById("parametros").classList.remove("activa");
   document.getElementById("clientes").classList.remove("activa");
-  document.getElementById("credito").classList.remove("activa");       
+  document.getElementById("credito").classList.remove("activa");
+  document.getElementById("listaCreditos").classList.remove("activa");       
 } 
 
 function mostrarSeccion(id) {
@@ -184,4 +185,14 @@ function solicitarCredito() {
   document.getElementById("resultadoCredito").className = "";
   document.getElementById("btnSolicitarCredito").disabled = true;
   }
+}
+
+function buscarCredito(cedula) {
+  let creditosEncontrados = [];
+  for (let i = 0; i < creditos.length; i++) {
+    if (creditos[i].cedula === cedula) {
+        creditosEncontrados.push(creditos[i])
+    }
+  }
+  return creditosEncontrados;
 }
